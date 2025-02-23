@@ -19,7 +19,7 @@ export const userService = {
         const finalUser: User = tempArr[0];
         return finalUser;
     },
-
+ 
     arrayLength(): Number {
         return this.userArray.length;
     }
