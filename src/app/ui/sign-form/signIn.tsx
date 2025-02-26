@@ -1,13 +1,14 @@
 type SignProps = {
     passwordHandler: (e: any) => void,
     usernameHandler: (e: any) => void,
-    submitHandler: (e: any) => void
+    submitHandler: (e: any) => void,
+    show: String
 }
 
-export default function SignIn({passwordHandler, usernameHandler, submitHandler}: SignProps) {
+export default function SignIn({passwordHandler, usernameHandler, submitHandler, show}: SignProps) {
     return (
         <>
-            <div className='flex justify-center items-center h-screen flex-col'>
+            <div className={`flex justify-center items-center h-screen flex-col ${show}`}>
                 <h1 className='font-bold text-2xl mb-16'>Sign In</h1>
                 <form className='max-w-sm mx-auto'>
                     <div className='mb-5'>
@@ -21,9 +22,10 @@ export default function SignIn({passwordHandler, usernameHandler, submitHandler}
                         <input type="password" name="password" id="password" className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
                         onChange={passwordHandler}/>
                     </div>
-                    <input className='text-white mt-8 bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-400 dark:hover:bg-red-200 dark:focus:ring-red-100' 
+                    <input className='mr-4 text-white mt-8 bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none cursor-pointer focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-400 dark:hover:bg-red-200 dark:focus:ring-red-100' 
                     type="button" value="Sign in" onClick={submitHandler}/>
-                </form>
+                    <button onClick={() => console.log("Chama")}>Don't have an account? Register now!</button>
+                </form> 
             </div>
         </>
     )
