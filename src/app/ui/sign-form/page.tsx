@@ -9,7 +9,7 @@ export default function Login() {
 
     const [usernameValue, setUnValue] = useState("");
     const [passwordValue, setPwdValue] = useState("");
-    const [isRegistered, setIsRegistered] = useState(false);
+    const [isSignUp, setIsSignUp] = useState(false);
 
     function signUp() {
         userService.saveUser({
@@ -31,10 +31,15 @@ export default function Login() {
         return false;
     }
 
-    return (
-        <>
-            <SignIn usernameHandler={(e) => setUnValue(e.target.value)} passwordHandler={(e) => setPwdValue(e.target.value)} submitHandler={signIn} show={'inline'}/>
-            <SignIn usernameHandler={(e) => setUnValue(e.target.value)} passwordHandler={(e) => setPwdValue(e.target.value)} submitHandler={signUp} show={'hidden'}/>
-        </>
-    )
+    function changeFormDisplayed() {
+        setIsSignUp(!isSignUp);
+    }
+
+
+    if (!isSignUp) {
+        return <SignIn usernameHandler={(e) => setUnValue(e.target.value)} passwordHandler={(e) => setPwdValue(e.target.value)} submitHandler={signIn} type={"I"} changeForm={changeFormDisplayed}/>
+           
+    } else {
+        return <SignIn usernameHandler={(e) => setUnValue(e.target.value)} passwordHandler={(e) => setPwdValue(e.target.value)} submitHandler={signUp} type={"U"} changeForm={changeFormDisplayed}/>
+    }
 }
