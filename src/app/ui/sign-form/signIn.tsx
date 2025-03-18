@@ -23,7 +23,7 @@ export default function SignIn({ passwordHandler, usernameHandler, submitHandler
         <div className={`flex justify-center items-center h-screen flex-col`}>
             <h1 className='font-bold text-2xl mb-16'>{type === 'I' ? 'Sign In' : 'Sign Up'}</h1>
             <FormFields usernameHandler={usernameHandler} passwordHandler={passwordHandler} submitHandler={submitHandler} buttonText={type === 'I' ? 'Sign in' : 'Sign up'} />
-            {type === 'I' && <button onClick={changeForm} className="mt-4">Don't have an account? Register now!</button>}
+            {type === 'I' && <button onClick={changeForm} className="mt-4 text-xs">Don't have an account? Register now!</button>}
         </div>
     );
 }

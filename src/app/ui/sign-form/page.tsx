@@ -3,13 +3,14 @@
 import { userService } from '@/app/lib/service/userService';
 import { useState } from 'react';
 import SignIn from './signIn';
-import { User } from '@/app/lib/entities/User';
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
 
     const [usernameValue, setUnValue] = useState("");
     const [passwordValue, setPwdValue] = useState("");
     const [isSignUp, setIsSignUp] = useState(false);
+    const router = useRouter();
 
     function signUp() {
         userService.saveUser({
@@ -18,17 +19,22 @@ export default function Login() {
             password: passwordValue,
             programs: null
         });
-        console.log(userService.getUsers());
+        router.push('/ui/sign-form');
+        setIsSignUp(false);
     }
 
-    function signIn(): boolean {
+    function signIn(): void {
+
         const user = {
             username: usernameValue,
             password: passwordValue
         }
         const arr = userService.getUsers().filter(registeredUser => registeredUser.username === user.username && registeredUser.password === user.password);
-        if (arr.length > 0) return true;
-        return false;
+        if (arr.length > 0) {
+            router.push('/ui/program');
+        } else {
+            alert("Invalid username or password");
+        }
     }
 
     function changeFormDisplayed() {
