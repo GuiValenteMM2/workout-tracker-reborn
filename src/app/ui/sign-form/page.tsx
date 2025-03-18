@@ -31,7 +31,7 @@ export default function Login() {
         }
         const arr = userService.getUsers().filter(registeredUser => registeredUser.username === user.username && registeredUser.password === user.password);
         if (arr.length > 0) {
-            router.push('/ui/program');
+            router.push('/ui/main-page');
         } else {
             alert("Invalid username or password");
         }
